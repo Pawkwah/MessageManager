@@ -1,0 +1,5 @@
+{% block content %}
+	{% for entry in object_list %}
+		<h5>{{ entry.sendDate|date:"Y-m-d" }}<a href="/admin/display/entry/{{entry.id}}/change/">  {{ entry.recipient }}</a></h5>
+	{% endfor %}
+{% endblock %}

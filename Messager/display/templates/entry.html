@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load staticfiles %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    {% block content %}
+    <tbody>
+		{% for entry in object_list %}
+			<tr>
+				<td>{{ entry.recipient }}</td>
+				<td>{{ entry.sendDate|date:"Y-m-d" }}</td>
+				<td>{{ entry.message }}</td>
+				<td><a class="btn btn-primary btn-sm" href="/admin/display/entry/{{entry.id}}/change/"" type="button">Edit</a></td>
+				<td><a class="btn btn-danger btn-sm" href="/admin/display/entry/{{entry.id}}/delete/" type="button">Delete</a></td>
+			</tr>
+		{% endfor %}
+		<tr><a class="btn btn-primary btn-lg btn-block" href="/admin/display/entry/add/" type="button">Add Another Entry</a></tr>
+	</tbody>
+	{% endblock %}
+	
+</body>
